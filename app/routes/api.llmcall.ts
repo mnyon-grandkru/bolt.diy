@@ -111,6 +111,9 @@ async function llmCallAction({ context, request }: ActionFunctionArgs) {
 
       logger.info(`Generating response Provider: ${provider.name}, Model: ${modelDetails.name}`);
 
+      // Some models (like gpt-5.1) require maxCompletionTokens instead of maxTokens
+      const requiresMaxCompletionTokens = modelDetails.name.startsWith('gpt-5');
+
       const result = await generateText({
         system,
         messages: [
@@ -125,7 +128,9 @@ async function llmCallAction({ context, request }: ActionFunctionArgs) {
           apiKeys,
           providerSettings,
         }),
-        maxTokens: dynamicMaxTokens,
+        ...(requiresMaxCompletionTokens
+          ? { maxCompletionTokens: dynamicMaxTokens }
+          : { maxTokens: dynamicMaxTokens }),
         toolChoice: 'none',
       });
       logger.info(`Generated response`);

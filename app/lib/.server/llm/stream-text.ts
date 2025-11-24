@@ -182,6 +182,9 @@ ${lockedFilesListString}
 
   // console.log(systemPrompt, processedMessages);
 
+  // Some models (like gpt-5.1) require maxCompletionTokens instead of maxTokens
+  const requiresMaxCompletionTokens = modelDetails.name.startsWith('gpt-5');
+
   return await _streamText({
     model: provider.getModelInstance({
       model: modelDetails.name,
@@ -190,7 +193,9 @@ ${lockedFilesListString}
       providerSettings,
     }),
     system: systemPrompt,
-    maxTokens: dynamicMaxTokens,
+    ...(requiresMaxCompletionTokens
+      ? { maxCompletionTokens: dynamicMaxTokens }
+      : { maxTokens: dynamicMaxTokens }),
     messages: convertToCoreMessages(processedMessages as any),
     ...options,
   });
