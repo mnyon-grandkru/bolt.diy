@@ -1,44 +1,50 @@
 # PROJECT STATE
 
 ## Project Type
-- Client / Product / Internal / Experiment
+- Internal
 
 ## Current Phase
-- Planning / Building / Refactoring / Testing / Deploying / Maintenance
+- Active Development
 
 ## Current Goal
-Clear single outcome for this phase.
+Maintain custom fork of bolt.diy for Grand Kru use with regular upstream syncs.
 
 ## Definition of Done (Phase)
-- 
-- 
-- 
+- Set up regular upstream sync schedule
+- Document all custom modifications
+- Test AI features with custom models
+- Consider contributing custom features back upstream
 
 ## Current Branch
--
+- main
 
 ## Last Completed Step
--
+- Added ARCHAEOLOGY.md and updated PROJECT_STATE.md
 
 ## Next 3 Micro Tasks
-1. 
-2. 
-3. 
+1. Document all custom env vars and their purposes
+2. Test AI features with your specific models/API keys
+3. Set up upstream sync schedule
 
 ## Blockers / Risks
-- 
+- Complex fork - upstream updates may cause merge conflicts
+- Need to manage secrets carefully
 
 ## Technical Notes
-- Important architectural decisions
-- Trade-offs
-- Open questions
+- Fork of bolt.diy (AI-powered web dev tool)
+- Next.js App Router
+- Vercel AI SDK for LLM integration
+- Supabase + other databases
+- Cloudflare Workers deployment option
+- Docker deployment option
 
 ## Deployment Notes
-- How to deploy
-- Environment requirements
+- Cloudflare Workers: `wrangler deploy`
+- Docker: `docker build && docker run`
+- See .env.example for required environment variables
 
 ## Exit Criteria for This Phase
 What triggers moving this project to:
-- Paused
-- Archived
-- Production release
+- Paused: AI dev tool no longer needed
+- Archived: Replaced by upstream or alternative
+- Production release: N/A - internal tool
